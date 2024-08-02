@@ -1,0 +1,1127 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chapter two - Reed-Frost dynamics &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter three - Compartmental models, the SIR and friends" href="chap3.html" />
+    <link rel="prev" title="Chapter one - Communicable diseases terminology and concepts (infection, transmission, and control)" href="chap1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Outbreak science and public health forecasting
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter one - Communicable diseases terminology and concepts (infection, transmission, and control)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter two - Reed-Frost dynamics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter three -  Compartmental models, the SIR and friends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter four - Computing solutions to compartmental models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter five - The reproduction number and epidemic size</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter six - Simulating the Reed-frost model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter seven - Simulating compartmental models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter eight - Reparametrizing and adding compartments to a computational model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter nine - Fitting the SEIR model to synthetic data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter ten -  Fitting the SEIR model to incident hospitalizations collected by the National health Surveillance Network (NHSN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11 - Modeling an outbreak over a network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter twelve - The Watermelon Meow Meow outbreak and analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/computationalUncertaintyLab/outbreak_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/computationalUncertaintyLab/outbreak_book/issues/new?title=Issue%20on%20page%20%2Fchap2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter two - Reed-Frost dynamics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter two - Reed-Frost dynamics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-and-setup">Assumptions and setup <a class="anchor" id="setup"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-of-escape-and-infection">Probability of escape and infection <a class="anchor" id="escape"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions <a class="anchor" id="init"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution">Evolution<a class="anchor" id="evolution"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-reed-frost-dynamical-system">The Reed Frost Dynamical System<a class="anchor" id="reedfrost"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation<a class="anchor" id="simulation"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics-assumed-at-start-of-outbreak">Dynamics assumed at start of outbreak <a class="anchor" id="start"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#math-aside-we-need-this">Math aside (we need this)<a class="anchor" id="aside"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trick-1">Trick 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trick-2">Trick 2</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#we-re-back">We’re Back.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basic-reproduction-number">The Basic Reproduction Number<a class="anchor" id="reponumber"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-reproduction-number-and-outbreak">Relationship between Reproduction number and outbreak. <a class="anchor" id="outbreak"></a></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-effective-reproduction-number-and-herd-immunity">The Effective Reproduction number and Herd Immunity<a class="anchor" id="herd"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-growth-rate-and-estimating-the-basic-reproduction-number-at-the-onset-of-an-outbreak">The growth rate and estimating the basic reproduction number at the onset of an outbreak  <a class="anchor" id="estim1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ability-to-study-epidemic-chains">The ability to study epidemic chains <a class="anchor" id="chains"></a></a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="chapter-two-reed-frost-dynamics">
+<h1>Chapter two - Reed-Frost dynamics<a class="headerlink" href="#chapter-two-reed-frost-dynamics" title="Link to this heading">#</a></h1>
+<section id="contents">
+<h2>Contents:<a class="headerlink" href="#contents" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#setup"><span class="xref myst">Assumptions and setup</span></a></p></li>
+<li><p><a class="reference internal" href="#escape"><span class="xref myst">Probability of escape and infection</span></a></p></li>
+<li><p><a class="reference internal" href="#init"><span class="xref myst">Initial Conditions</span></a></p></li>
+<li><p><a class="reference internal" href="#evolution"><span class="xref myst">Evolution</span></a></p></li>
+<li><p><a class="reference internal" href="#reedfrost"><span class="xref myst">Reed Frost Dynamical System</span></a></p></li>
+<li><p><a class="reference internal" href="#simulation"><span class="xref myst">Simulation</span></a></p></li>
+<li><p><a class="reference internal" href="#start"><span class="xref myst">Dynamics assumed at start of outbreak</span></a></p></li>
+<li><p><a class="reference internal" href="#math"><span class="xref myst">Mathematics aside</span></a></p></li>
+<li><p><a class="reference internal" href="#reponumber"><span class="xref myst">The Basic Reproduction number and link to outbreaks</span></a></p></li>
+<li><p><a class="reference internal" href="#outbreak"><span class="xref myst">Relationship between Reproduction number and outbreak</span></a></p></li>
+<li><p><a class="reference internal" href="#herd"><span class="xref myst">The Effective Reproduction number and Herd Immunity</span></a></p></li>
+<li><p><a class="reference internal" href="#estim1"><span class="xref myst">The growth rate and estimating the basic reproduction number at the onset of an outbreak</span></a></p></li>
+<li><p><a class="reference internal" href="#chains"><span class="xref myst">The ability to study epidemic chains and household transmission</span></a></p></li>
+<li><p><a class="reference internal" href="#fit2data"><span class="xref myst">Fitting the Reed-Frost to observations</span></a></p></li>
+<li><p><a class="reference internal" href="#computer"><span class="xref myst">Using the computer to optimize (Optional, for now)</span></a></p></li>
+</ul>
+</section>
+<section id="assumptions-and-setup">
+<h2>Assumptions and setup <a class="anchor" id="setup"></a><a class="headerlink" href="#assumptions-and-setup" title="Link to this heading">#</a></h2>
+<p>Suppose that there exists <span class="math notranslate nohighlight">\(N\)</span> individuals who can exist in one of three disease states starting at time <span class="math notranslate nohighlight">\(0\)</span> and ending at time <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<ol class="arabic simple">
+<li><p>Susceptible - An individual is not infected at present but can be infected in the future.</p></li>
+<li><p>Infected - An individual is infected at present and can infect other susceptible individuals.</p></li>
+<li><p>Removed - An individual is no longer susceptible, nor infected, and cannot again become infected.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Assume, for each time unit, that all <span class="math notranslate nohighlight">\(N\)</span> individuals come into contact with one another, and that each interaction is independent.
+When a susceptible comes into contact with an infected, the susceptible individual has a probability <span class="math notranslate nohighlight">\(p\)</span> of moving from the susceptible state to the infected state (<span class="math notranslate nohighlight">\(S \to I\)</span>).</p></li>
+<li><p>Assume that if an individual is infected then they (1) are only infected for a single time unit and (2) after that time units ends they are removed.</p></li>
+<li><p>Assume that the probability of infection should depend on the number of infected individuals in the population.</p></li>
+</ul>
+</section>
+<section id="probability-of-escape-and-infection">
+<h2>Probability of escape and infection <a class="anchor" id="escape"></a><a class="headerlink" href="#probability-of-escape-and-infection" title="Link to this heading">#</a></h2>
+<p>Consider a single susceptible individual.
+At time <span class="math notranslate nohighlight">\(t\)</span>, this susceptible individual will contact all <span class="math notranslate nohighlight">\(I\)</span> infected individuals.
+At each contact between the susceptible individual and one of the infected individuals, there is a probabilty <span class="math notranslate nohighlight">\(p\)</span> that the infected individual is successfull and infects this suscpetible individual.</p>
+<p>If <span class="math notranslate nohighlight">\(p\)</span> is the probability that an infected individual—often called can infector—can infect this suceptible then the probability that an infector does <strong>not</strong> infect this suscpetible is <span class="math notranslate nohighlight">\(1-p\)</span>.
+Then the probability that this susceptible is not infected by the first member in <span class="math notranslate nohighlight">\(I\)</span> is <span class="math notranslate nohighlight">\((1-p)\)</span> and the probability that this this susceptible is not infected by the first <strong>and</strong> second infector is</p>
+<div class="math notranslate nohighlight">
+\[
+(1-p) \times (1-p)
+\]</div>
+<p>and so the probability that this suscpetible is not infected by all infectors in <span class="math notranslate nohighlight">\(I\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+p(\text{escape}) = (1-p) \times (1-p)\times (1-p) \cdots \times (1-p) = (1-p)^{I}
+\]</div>
+<p>This is typically called the <strong>esape probability</strong>.</p>
+<p>If <span class="math notranslate nohighlight">\((1-p)^{I}\)</span> is the probability that no infector successfully infects this susceptible then the probability that at least one individual infects this suscpetible is</p>
+<div class="math notranslate nohighlight">
+\[
+ p(\text{infection}) = 1 - \left[(1-p)^{I}\right]
+\]</div>
+</section>
+<section id="initial-conditions">
+<h2>Initial conditions <a class="anchor" id="init"></a><a class="headerlink" href="#initial-conditions" title="Link to this heading">#</a></h2>
+<p>The above assumptions and conditions assume that the <span class="math notranslate nohighlight">\(N\)</span> individuals who can exist in one of three disease states may move from one disease state to another <em>over time</em>.
+Let us be explicit, and define the number of individuals in each disease state at time <span class="math notranslate nohighlight">\(0\)</span>, and define how the number of indivduals in each of the three disease states is expected to change over time.</p>
+<p>The <strong>initial conditions</strong> assigns a number of individuals to each disease state at time <span class="math notranslate nohighlight">\(0\)</span>, and is denoted
+\begin{align}
+i_{0} &amp;= i^{0}\
+s_{0} &amp;= s^{0}\
+r_{0} &amp;= r^{0}
+\end{align}
+where lowercase letters denote an observed or realized number of individuals in each disease state at time <span class="math notranslate nohighlight">\(0\)</span> (the subscript) and lowercase letters with a superscript denote values between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(N\)</span>.
+For this model, the sum of the number of individuals in each disease state must equal <span class="math notranslate nohighlight">\(N\)</span>.</p>
+</section>
+<section id="evolution">
+<h2>Evolution<a class="anchor" id="evolution"></a><a class="headerlink" href="#evolution" title="Link to this heading">#</a></h2>
+<p>Now that we have specified, at time <span class="math notranslate nohighlight">\(0\)</span>, the number of individuals who belong to the susceptible disease state (<span class="math notranslate nohighlight">\(s_{0}\)</span>), number of individuals who belong to the infected disease state (<span class="math notranslate nohighlight">\(i_{0}\)</span>), and number of individuals who belong to the removed disease state (<span class="math notranslate nohighlight">\(r_{0}\)</span>), we must decide the number of individuals at <strong>the next time step</strong>.</p>
+<p>At time <span class="math notranslate nohighlight">\(t\)</span>, suppose that there exists <span class="math notranslate nohighlight">\(S_{t}\)</span> susceptible individuals.
+A susceptible individual moves to the infected state with probability <span class="math notranslate nohighlight">\(1 - (1-p)^{I_{t}}\)</span> (see above section on escape).
+Further, we assume that for each susceptible the probability of moving to the infected state is independent.
+If we define “success” as <span class="math notranslate nohighlight">\(1 - (1-p)^{I_{t}}\)</span> and the number of trials as <span class="math notranslate nohighlight">\(S_{t}\)</span> then the <strong>number of infected individuals at time <span class="math notranslate nohighlight">\(t+1\)</span> or <span class="math notranslate nohighlight">\(I_{t+1}\)</span></strong> has a Binomial distribution,</p>
+<p>\begin{align}
+I_{t+1} &amp;\sim \text{Bin}\left(S_{t}, \left[1 - (1-p)^{I_{t}}\right] \right).
+\end{align}</p>
+<p>Let the observed number of infected individuals at time <span class="math notranslate nohighlight">\(t+1\)</span> equal <span class="math notranslate nohighlight">\(i_{t+1}\)</span>.
+Then the number of susceptibles at the next time step is then equal to the number of susceptibles at time <span class="math notranslate nohighlight">\(t\)</span> minus the number of susceptibles who became infected.</p>
+<p>\begin{align}
+s_{t+1} &amp;= s_{t} - i_{t+1} \
+\end{align}</p>
+<p>Finally, we assume that at the end of each time unit all infected individuals at time <span class="math notranslate nohighlight">\(t\)</span> move to the “removed” category. So then,
+\begin{align}
+r_{t+1} &amp;= r_{t}+ i_{t}
+\end{align}</p>
+</section>
+<section id="the-reed-frost-dynamical-system">
+<h2>The Reed Frost Dynamical System<a class="anchor" id="reedfrost"></a><a class="headerlink" href="#the-reed-frost-dynamical-system" title="Link to this heading">#</a></h2>
+<p>The system of equations
+\begin{align}
+I_{t+1} &amp;\sim \text{Bin}\left(S_{t}, \left[1 - (1-p)^{I_{t}}\right] \right)\
+s_{t+1} &amp;= s_{t} - i_{t+1} \
+r_{t+1} &amp;= r_{t}+ i_{t}
+\end{align}</p>
+<p>along with initial conditions
+\begin{align}
+(s^{0}, i^{0},r^{0})
+\end{align}</p>
+<p>define a system called <strong>The Reed Frost Dynamical System</strong>.
+We note that the captial <span class="math notranslate nohighlight">\(I_{t+1}\)</span> indicates that the number of infectors at time <span class="math notranslate nohighlight">\(t+1\)</span> is a random variable.
+After the number of infectors is determined, the number of susceptibles is automatically determined.
+However, before the number of infectors is selected the number of susceptibles is itself a random variable.</p>
+<p>One should be careful about when the number of susceptibles at time <span class="math notranslate nohighlight">\(t+1\)</span> is a random variable.
+Before the number of infectors is assigned the number of susceptibles  is a random variable. After the number of infectors is assigned then the number of susceptibles is not random.</p>
+</section>
+<section id="simulation">
+<h2>Simulation<a class="anchor" id="simulation"></a><a class="headerlink" href="#simulation" title="Link to this heading">#</a></h2>
+<p>Below is a simulation of the above Reed Frost Dynamical System.
+Presented is the number of infected individual at each time unit for a specified number of simulations.
+At this point, the code (in Python) is not important.</p>
+<p>Instead, please select different values for <span class="math notranslate nohighlight">\(p\)</span>, the probability of infection; $i^{0} the initial number of infectors; and sims, the number of unique times to run this Reed Frost System.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">interact_manual</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+
+<span class="k">def</span> <span class="nf">Reed_Frost_Dynamical_system</span><span class="p">(</span><span class="n">sims</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">i0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">i0</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+        <span class="n">infectors</span>    <span class="o">=</span> <span class="p">[</span><span class="n">i0</span><span class="p">]</span>
+        <span class="n">removed</span>      <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">susceptibles</span> <span class="o">=</span> <span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="n">i0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+            <span class="n">i_tp1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">susceptibles</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="p">(</span> <span class="n">infectors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span>  <span class="p">)</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">s_tp1</span> <span class="o">=</span> <span class="n">susceptibles</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">i_tp1</span>
+            <span class="n">r_tp1</span> <span class="o">=</span> <span class="n">removed</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">infectors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">infectors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i_tp1</span><span class="p">)</span>
+            <span class="n">susceptibles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_tp1</span><span class="p">)</span>
+            <span class="n">removed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_tp1</span><span class="p">)</span>
+        <span class="n">infectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">infectors</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">infectors</span>
+
+    <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sims</span><span class="p">):</span>
+        <span class="n">infectors</span> <span class="o">=</span> <span class="n">evolve</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">i0</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">infectors</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">75</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time units (t)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of infectors (It)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ax</span>
+        
+
+<span class="n">interact</span><span class="p">(</span><span class="n">Reed_Frost_Dynamical_system</span>
+         <span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+         <span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+         <span class="p">,</span><span class="n">r0</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+         <span class="p">,</span><span class="n">sims</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span> 
+         <span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+         <span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.00125</span><span class="p">)</span>
+        <span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">interact_manual</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">def</span> <span class="nf">Reed_Frost_Dynamical_system</span><span class="p">(</span><span class="n">sims</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">i0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;ipywidgets&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dynamics-assumed-at-start-of-outbreak">
+<h2>Dynamics assumed at start of outbreak <a class="anchor" id="start"></a><a class="headerlink" href="#dynamics-assumed-at-start-of-outbreak" title="Link to this heading">#</a></h2>
+<p>At the start of an outbreak, there is a small number of infectors, a large number of susceptible individuals, and (typically) no indiviuals in the removed disease state.
+One way to represent this state of nature is to assign the following initial conditions
+<span class="math notranslate nohighlight">\(( s^{0} = N-1, i^{0}=1,r^{0}=0)\)</span>.</p>
+<p>Given a probability of infection, <span class="math notranslate nohighlight">\(p\)</span>, and the above initial conditions, we can explore how the number of infectors changes in the Reed-Frost Dynamical system and how all three disease states behave early during an outbreak (when <span class="math notranslate nohighlight">\(T\)</span> is small).</p>
+<p>We know that in the Reed-Frost model,</p>
+<p><span class="math notranslate nohighlight">\(I_{t+1} \sim \text{Bin}(S_{t}, 1-(1-p)^{I_{t}} )\)</span></p>
+<p><strong>Our goal</strong> is to understand the behavior of <span class="math notranslate nohighlight">\(I\)</span> when <span class="math notranslate nohighlight">\(t\)</span> is small and when <span class="math notranslate nohighlight">\(i^0\)</span> is small.</p>
+<p>First, let <span class="math notranslate nohighlight">\(t=0\)</span>. Then</p>
+<p><span class="math notranslate nohighlight">\(I_{1} \sim \text{Bin}(S_{0}, 1-(1-p)^{i^{0}} )\)</span></p>
+<p>In this first time step, the number of initial susceptibles <span class="math notranslate nohighlight">\(s^{0}\)</span> is very close to <span class="math notranslate nohighlight">\(N\)</span> and so</p>
+<p><span class="math notranslate nohighlight">\(I_{t+1} \sim \text{Bin}(N, 1-(1-p)^{i^{0}} )\)</span></p>
+</section>
+<hr class="docutils" />
+<section id="math-aside-we-need-this">
+<h2>Math aside (we need this)<a class="anchor" id="aside"></a><a class="headerlink" href="#math-aside-we-need-this" title="Link to this heading">#</a></h2>
+<p>We want to simplify <span class="math notranslate nohighlight">\((1-p)^{i^{0}}\)</span> to better understand what this expression means.
+This expression looks a bit like <span class="math notranslate nohighlight">\(x^{a}\)</span>.
+Now the tricks.</p>
+</section>
+<section id="trick-1">
+<h2>Trick 1<a class="headerlink" href="#trick-1" title="Link to this heading">#</a></h2>
+<p>The exponential function and logarithm are inverses of one another.
+That is, we are allowed to take the logarithm of an expression (say <span class="math notranslate nohighlight">\(x\)</span>) followed by the exponential and we will not change the orginal value of our expression.</p>
+<div class="math notranslate nohighlight">
+\[
+x = e^{\log(x)}
+\]</div>
+<p>This means that</p>
+<p>\begin{align}
+x^{a} &amp;= e^{\log(x^{a})}\
+&amp;= e^{a\log(x)}
+\end{align}</p>
+<p>Finally, an important approximation for the exponential is it’s <em>series</em> expansion.</p>
+<p>\begin{align}
+e^{x} \approx 1 + x + \frac{x^{2}}{2} + \frac{x^{3}}{6} + \cdots = \sum_{k=1}^{\infty} \frac{x^{k}}{k!}
+\end{align}</p>
+<p>where <span class="math notranslate nohighlight">\(k!\)</span> is read “k factorial” and equals <span class="math notranslate nohighlight">\(k! = k\cdot(k-1)\cdot(k-2)\cdots 1\)</span></p>
+</section>
+<section id="trick-2">
+<h2>Trick 2<a class="headerlink" href="#trick-2" title="Link to this heading">#</a></h2>
+<p>The logarithm of <span class="math notranslate nohighlight">\(1-x\)</span> is, when <span class="math notranslate nohighlight">\(x\)</span> is small, approximately equal to <span class="math notranslate nohighlight">\(-x\)</span> or</p>
+<p>\begin{align}
+\log(1-x) &amp;= -x + x^{2}/2 \cdots \
+&amp;\approx -x
+\end{align}</p>
+<hr class="docutils" />
+</section>
+</section>
+<section id="we-re-back">
+<h1>We’re Back.<a class="headerlink" href="#we-re-back" title="Link to this heading">#</a></h1>
+<p>Lets use the two tricks above to approximate <span class="math notranslate nohighlight">\(1-(1-p)^{i^{0}}\)</span> when <span class="math notranslate nohighlight">\(p\)</span> is small.</p>
+<p>\begin{align}
+1-(1-p)^{i^{0}} &amp;= 1- e^{ \log \left( (1-p)^{i^{0}}\right)} \
+&amp;= 1- e^{ i^{0} \log \left( 1-p\right)} \
+&amp;= 1- e^{ -i^{0}p} \
+&amp;= 1- (1-i^{0}p ) \
+&amp;= i^{0}p
+\end{align}</p>
+<p>This means then, when <span class="math notranslate nohighlight">\(p\)</span> is small that</p>
+<p><span class="math notranslate nohighlight">\(I_{1} \sim \text{Bin}(N, 1-(1-p)^{i^{0}} )\)</span></p>
+<p>is close to</p>
+<p><span class="math notranslate nohighlight">\(I_{1} \sim \text{Bin}(N, i^{0}p)\)</span> and so the expected value is equal to</p>
+<p>\begin{align}
+\mathbb{E}(I_{1}) = N i^{0}p
+\end{align}</p>
+<p>We can use the same procedure above to find that</p>
+<p>\begin{align}
+\mathbb{E}\left(I_{2}\right) &amp;= N i^{1} p \
+&amp;= N \left( N i^{0} p \right) p \
+&amp;= \left(Np\right)^{2} i^{0}
+\end{align}</p>
+<p>and in general</p>
+<p>\begin{align}
+\mathbb{E}\left(I_{t+1}\right)  &amp;= \left(Np\right)^{t} i^{0}
+\end{align}</p>
+<p>We can check the accuracy of our approximation above—that <span class="math notranslate nohighlight">\(\mathbb{E}\left(I_{t+1}\right) = \left(Np\right)^{t} i^{0}\)</span>—numerically.
+Below, we plot the number of infectors over time units for 100 separate simulations.
+We choose a small <span class="math notranslate nohighlight">\(p = 0.0015\)</span> and <span class="math notranslate nohighlight">\(N=1000\)</span> individuals in the system.
+We also plotted in solid black our approximation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">1000</span>
+<span class="n">p</span><span class="o">=</span><span class="mf">0.0015</span>
+
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">=</span><span class="n">Reed_Frost_Dynamical_system</span><span class="p">(</span><span class="n">sims</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">i0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.0015</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span> <span class="n">times</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s2">&quot;Approximation&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/185b5dcc131110a96b367bc0686e3b9379ebc90d375be0f0e1d97946f0b22a5d.png" src="_images/185b5dcc131110a96b367bc0686e3b9379ebc90d375be0f0e1d97946f0b22a5d.png" />
+</div>
+</div>
+<p>We see that our approximation works well for a small number of time units.
+After <span class="math notranslate nohighlight">\(t=10\)</span> our approximaton suggests that the number of infectors will continue to increase.
+However, after time unit 10 the number of infectors begins to decrease towards zero.
+Note that not all epidemic trajectories fit this approximation.</p>
+<section id="the-basic-reproduction-number">
+<h2>The Basic Reproduction Number<a class="anchor" id="reponumber"></a><a class="headerlink" href="#the-basic-reproduction-number" title="Link to this heading">#</a></h2>
+<p>Let us observe 100 simulated epidemic trajectories for the above system (plus parameters) for varying values of <span class="math notranslate nohighlight">\(p\)</span>.
+Take a minute to change the parameter value <span class="math notranslate nohighlight">\(p\)</span>.
+What do you observe?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">Reed_Frost_Dynamical_system</span>
+         <span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+         <span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+         <span class="p">,</span><span class="n">sims</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+         <span class="p">,</span><span class="n">r0</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+         <span class="p">,</span><span class="n">i0</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+         <span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">3</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.4f&#39;</span><span class="p">,)</span>
+        <span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "4537744934e740e0bf1bf7cb6002e817", "version_major": 2, "version_minor": 0}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.Reed_Frost_Dynamical_system(sims=10, T=15, N=1000, i0=1, p=0.02, show=True)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>After enough trials, you may see that when the value of <span class="math notranslate nohighlight">\(p \ge 1/1000\)</span> that the number of infectors grows to a peak and then declines. For values smaller than <span class="math notranslate nohighlight">\(1/1000\)</span> the infectors never really increase. Instead they decline.</p>
+<p>The <strong>basic reproduction number</strong> is defined as the average number of individuals who move to the infected state as a result of a single infected individual in a population of all susceptibles.</p>
+<p>For the Reed-Frost Dynamical System, an approximate reproduction number is
+<span class="math notranslate nohighlight">\(\mathcal{R}_{0} = \mathbb{E}(I_{1}) = Np\)</span></p>
+<section id="relationship-between-reproduction-number-and-outbreak">
+<h3>Relationship between Reproduction number and outbreak. <a class="anchor" id="outbreak"></a><a class="headerlink" href="#relationship-between-reproduction-number-and-outbreak" title="Link to this heading">#</a></h3>
+<p>When infections start to take place, public health officials and epidemiologists typically assign this spread of an infectious agent to one of three classifications: an outbreak, an epidemic, a pandemic.<br />
+An <strong>outbreak</strong> is defined as a higher-than-expected number of infections present in a local or small region of space on a short time scale.
+Like an outbreak, an <strong>epidemic</strong> is defined as a higher-than-expected number of infections present in an expansize area or among a large community on a short time scale.
+A <strong>pandemic</strong> is an outbreak that occurs on a global scale.</p>
+<p>Lets look closer at
+<span class="math notranslate nohighlight">\(\mathbb{E}\left(I_{t+1}\right) = \mathcal{R}_{0}^{t} i^{0}\)</span>
+If as assume that the number of initial infectors is one, we have</p>
+<p><span class="math notranslate nohighlight">\(\mathbb{E}\left(I_{t+1}\right) = \mathcal{R}_{0}^{t}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{R}_{0} = Np\)</span> is a constant.</p>
+<p>If <span class="math notranslate nohighlight">\(\mathcal{R}_{0} = 1 \)</span> then
+\begin{align}
+\mathbb{E}\left(I_{t+1}\right) &amp;= \mathcal{R}_{0}^{t}\
+&amp;= 1^{t}\
+&amp;= 1
+\end{align}</p>
+<p>and the number of infectos is a constant, never growing one.</p>
+<p>If <span class="math notranslate nohighlight">\(\mathcal{R}_{0} &lt; 1 \)</span> then (lets say <span class="math notranslate nohighlight">\(\mathcal{R}=1/2\)</span>)
+\begin{align}
+\mathbb{E}\left(I_{t+1}\right) &amp;= \mathcal{R}_{0}^{t}\
+&amp;= (1/2)^{t}
+\to 0 \text{  as  } t \to \infty
+\end{align}</p>
+<p>Finally, If <span class="math notranslate nohighlight">\(\mathcal{R}_{0} &gt; 1 \)</span> then (lets say <span class="math notranslate nohighlight">\(\mathcal{R}=2\)</span>)
+\begin{align}
+\mathbb{E}\left(I_{t+1}\right) &amp;= \mathcal{R}_{0}^{t}\
+&amp;= (2)^{t}
+\to \infty \text{  as  } t \to \infty
+\end{align}</p>
+<p>Intuitively, in order for an infectious agent to continue to spread it must multiply faster than it is removed from the population.</p>
+</section>
+</section>
+<section id="the-effective-reproduction-number-and-herd-immunity">
+<h2>The Effective Reproduction number and Herd Immunity<a class="anchor" id="herd"></a><a class="headerlink" href="#the-effective-reproduction-number-and-herd-immunity" title="Link to this heading">#</a></h2>
+<p>The basic reproduction number, <span class="math notranslate nohighlight">\(\mathcal{R}_{0}\)</span>, may not always be a realistic way to characterize whether an infecitous agent will begin to spread within a population.
+This is because the number (or proportion) of susceptibles in the population may not be close to <span class="math notranslate nohighlight">\(N\)</span>.
+For example, if an infectious agent has a <span class="math notranslate nohighlight">\(\mathcal{R}_{0}=3\)</span> then in a fully susceptible population we would expect an infector to infect three susceptibles.
+However, if the population was immune~(for example vaccinated) to the infectious agent then there are 0 susceptibles.
+In the case where there are no suscpetibles, the this infecitous agent with <span class="math notranslate nohighlight">\(\mathcal{R}_{0}=3\)</span> would not propogate at all.</p>
+<p>To characterize the importance of the proportion of susceptibles on thespread of an infectious agent in the population, we define the <strong>effective reproduction number</strong>.
+The <strong>Effective reproduction number</strong> is the expected number of susceptibles individuals who will get infected at the next time unit.
+Note, we left out of the above definition the added constraint that the population must be fully susceptible.</p>
+<p>For the Reed-frost model, the effective repoduction number at time unit <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(\mathcal{R}_{eff} = S_{t}p\)</span>.
+Where <span class="math notranslate nohighlight">\(S_{t}\)</span> is the number of susceptible individuals.</p>
+<p>Below, lets consider the expected number of infections for <span class="math notranslate nohighlight">\(S_{0}\)</span> number of susceptibles. In other words, we do not necesarrily choose to have an entirely suscpetible population (<span class="math notranslate nohighlight">\(S_{0} \approx \)</span> N).</p>
+<p>\begin{align}
+\mathbb{E}(I_{t})    &amp;= \mathcal{R}<em>{0} = Np &gt; 1      \
+S</em>{0} p &amp;&gt; 1      \
+S_{0} &amp;&gt;\frac{1}{p} \
+s_{0} &amp;&gt;\frac{1}{Np} \hspace{2em}\text{(Divide both sides by N)} \
+s_{0} &amp;&gt;\frac{1}{\mathcal{R}<em>{0}} \
+1-\text{immune} &amp;&gt;\frac{1}{\mathcal{R}</em>{0}}\
+\text{immune} &amp;&lt; 1 - \frac{1}{\mathcal{R}_{0}}<br />
+\end{align}</p>
+<p>where <span class="math notranslate nohighlight">\(s_{0}\)</span> is the proportion of susceptibles and <span class="math notranslate nohighlight">\(\text{immune}\)</span> is the proportion of people who are immune.</p>
+<p>The quantity <span class="math notranslate nohighlight">\(q\)</span> is called the <strong>Herd Immunity Threshold</strong> if, for such a value <span class="math notranslate nohighlight">\(q\)</span>, an outbreak occurs if the proportion of susceptible individuals exceeds <span class="math notranslate nohighlight">\(q\)</span> and an outbreak does not occur otherwise.
+For the Reed-Frost Dynamical system, the Herd Immunity Threshold is <span class="math notranslate nohighlight">\(1 - \frac{1}{\mathcal{R}_{0}}\)</span>.</p>
+<p>Lets take a look at the effective repoduction number and herd immunity threshold below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Reed_Frost_Dynamical_system</span><span class="p">(</span><span class="n">sims</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">i0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">R0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s0</span><span class="o">=</span><span class="mi">999</span> <span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    
+    <span class="n">p</span>  <span class="o">=</span> <span class="n">R0</span><span class="o">/</span><span class="mi">1000</span>
+    
+    <span class="n">Reff</span> <span class="o">=</span> <span class="n">s0</span><span class="o">*</span><span class="n">p</span>
+    <span class="n">HIT</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">1.</span><span class="o">/</span><span class="n">R0</span>
+    <span class="n">props</span> <span class="o">=</span> <span class="n">s0</span><span class="o">/</span><span class="n">N</span>
+    
+    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">s0</span><span class="p">,</span><span class="n">i0</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+        <span class="n">infectors</span>    <span class="o">=</span> <span class="p">[</span><span class="n">i0</span><span class="p">]</span>
+        <span class="n">susceptibles</span> <span class="o">=</span> <span class="p">[</span><span class="n">s0</span><span class="p">]</span>
+        <span class="n">removed</span>      <span class="o">=</span> <span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="p">(</span><span class="n">s0</span><span class="o">+</span><span class="n">i0</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+            <span class="n">i_tp1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">susceptibles</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="p">(</span> <span class="n">infectors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span>  <span class="p">)</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">s_tp1</span> <span class="o">=</span> <span class="n">susceptibles</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">i_tp1</span>
+            <span class="n">r_tp1</span> <span class="o">=</span> <span class="n">removed</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">infectors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">infectors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i_tp1</span><span class="p">)</span>
+            <span class="n">susceptibles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_tp1</span><span class="p">)</span>
+            <span class="n">removed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_tp1</span><span class="p">)</span>
+        <span class="n">infectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">infectors</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">infectors</span>
+
+    <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sims</span><span class="p">):</span>
+        <span class="n">infectors</span> <span class="o">=</span> <span class="n">evolve</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">s0</span><span class="p">,</span><span class="n">i0</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">infectors</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">75</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time units (t)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of infectors (It)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.95</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Eff. $\mathcal</span><span class="si">{R}</span><span class="s2">_</span><span class="si">{0}</span><span class="s2">$&quot;</span> <span class="o">+</span><span class="s2">&quot; = </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Reff</span><span class="p">),</span><span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.85</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;HIT&quot;</span> <span class="o">+</span><span class="s2">&quot; = </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">HIT</span><span class="p">),</span><span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.75</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;s0&quot;</span> <span class="o">+</span><span class="s2">&quot; = </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">props</span><span class="p">),</span><span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.65</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Prop Immune&quot;</span> <span class="o">+</span><span class="s2">&quot; = </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">props</span><span class="p">),</span><span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    
+    
+    <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ax</span>
+
+<span class="n">interact</span><span class="p">(</span><span class="n">Reed_Frost_Dynamical_system</span>
+         <span class="p">,</span><span class="n">T</span> <span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+         <span class="p">,</span><span class="n">N</span> <span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+         <span class="p">,</span><span class="n">R0</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.125</span><span class="p">,</span><span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">,)</span>
+         <span class="p">,</span><span class="n">sims</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> 
+         <span class="p">,</span><span class="n">i0</span>   <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+         <span class="p">,</span><span class="n">s0</span>   <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> 
+        <span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e07df2817b8a4eb8929c967afd46645e", "version_major": 2, "version_minor": 0}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.Reed_Frost_Dynamical_system(sims=10, T=15, N=1000, i0=1, R0=1, s0=999, show=True)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-growth-rate-and-estimating-the-basic-reproduction-number-at-the-onset-of-an-outbreak">
+<h2>The growth rate and estimating the basic reproduction number at the onset of an outbreak  <a class="anchor" id="estim1"></a><a class="headerlink" href="#the-growth-rate-and-estimating-the-basic-reproduction-number-at-the-onset-of-an-outbreak" title="Link to this heading">#</a></h2>
+<p>During the onset of an outbreak, then the majority of individuals are susceptible to infection, we can take advantage of the fact that the expected number of infected individuals equals</p>
+<p>\begin{align}
+\mathbb{E}\left(I_{t+1}\right) &amp;= \mathcal{R}_{0}^{t}
+\end{align}</p>
+<p>to estimate the basic reproduction number.</p>
+<p>We can rearrange the above equation as
+\begin{align}
+\log\left[\mathbb{E}\left(I_{t+1}\right)\right] &amp;= t\log\left[\mathcal{R}_{0}\right].
+\end{align}</p>
+<p>If we plot on the vertical axis the log of the reported number of incident cases per time unit and on the horizontal axis we plot time, then we can estimate a line which was slope equal to <span class="math notranslate nohighlight">\(\log\left[\mathcal{R}_{0}\right]\)</span>, or</p>
+<p>\begin{align}
+\log\left[\mathbb{E}\left(I_{t+1}\right)\right] &amp;= t\log\left[\mathcal{R}_{0}\right]\
+y &amp;= t \cdot \text{slope}
+\end{align}</p>
+<p>Below, we simulate data from the Reed-Frost model and fit this line.
+We output a point estimate of the basic reproduction number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Reed_Frost_Dynamical_system</span><span class="p">(</span><span class="n">sims</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">i0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">R0</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    
+    <span class="n">p</span> <span class="o">=</span> <span class="n">R0</span><span class="o">/</span><span class="n">N</span>
+    
+    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">i0</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+        <span class="n">infectors</span>    <span class="o">=</span> <span class="p">[</span><span class="n">i0</span><span class="p">]</span>
+        <span class="n">removed</span>      <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">susceptibles</span> <span class="o">=</span> <span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="n">i0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+            <span class="n">i_tp1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">susceptibles</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="p">(</span> <span class="n">infectors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span>  <span class="p">)</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">s_tp1</span> <span class="o">=</span> <span class="n">susceptibles</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">i_tp1</span>
+            <span class="n">r_tp1</span> <span class="o">=</span> <span class="n">removed</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">infectors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">infectors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i_tp1</span><span class="p">)</span>
+            <span class="n">susceptibles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_tp1</span><span class="p">)</span>
+            <span class="n">removed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r_tp1</span><span class="p">)</span>
+        <span class="n">infectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">infectors</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">infectors</span>
+    
+    <span class="n">sum_inf</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">sum_inf</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">:</span>
+        <span class="n">infectors</span> <span class="o">=</span> <span class="n">evolve</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">i0</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">sum_inf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">infectors</span><span class="p">)</span>
+        
+        <span class="n">t_where</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">infectors</span><span class="p">)</span>
+        
+        <span class="n">Ct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">infectors</span><span class="p">[:</span><span class="n">t_where</span><span class="p">]</span><span class="o">+</span><span class="mf">0.1</span><span class="p">)</span>
+        
+   
+    <span class="n">fig</span><span class="p">,</span><span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+   
+    <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">infectors</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time units (t)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of infectors (It)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span> <span class="n">Ct</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time units (t)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of infectors (It)&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    
+    <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t_where</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;t&quot;</span><span class="p">:</span><span class="n">times</span><span class="p">,</span><span class="s2">&quot;cases&quot;</span><span class="p">:</span><span class="n">Ct</span><span class="p">[:</span><span class="n">t_where</span><span class="p">]})</span>
+    <span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;cases~t-1&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    
+    <span class="n">slope</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">slope</span><span class="o">*</span><span class="n">times</span>  <span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.95</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\hat{\mathcal</span><span class="si">{R}</span><span class="s2">_</span><span class="si">{0}</span><span class="s2">}$=&quot;</span><span class="o">+</span><span class="s2">&quot;</span><span class="si">{:.1f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">slope</span><span class="p">))</span>
+            <span class="p">,</span><span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+            <span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s2">&quot;top&quot;</span>
+            <span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span>
+           <span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">infectors</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ax</span>
+
+<span class="n">interact</span><span class="p">(</span><span class="n">Reed_Frost_Dynamical_system</span><span class="p">,</span>
+         <span class="n">sims</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">T</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">N</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">i0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">R0</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">,),</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "aa65bd9924b848f6a126ae7726a987bc", "version_major": 2, "version_minor": 0}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.Reed_Frost_Dynamical_system(sims=10, T=15, N=1000, i0=1, R0=1.25, show=True)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-ability-to-study-epidemic-chains">
+<h2>The ability to study epidemic chains <a class="anchor" id="chains"></a><a class="headerlink" href="#the-ability-to-study-epidemic-chains" title="Link to this heading">#</a></h2>
+<p>Define an <strong>epidemic chain</strong> as the number of infected individuals over discrete time units.
+We will denote an epidemic chain as <span class="math notranslate nohighlight">\(i^{1}-i^{2}-i^{3}-i^{4}-i^{5}-\cdots\)</span>
+where <span class="math notranslate nohighlight">\(i^{1}\)</span> specifies the number of infected individuals within the first time unit, <span class="math notranslate nohighlight">\(i^{2}\)</span> specifies the number of infected within the second time units and so on.</p>
+<p><em>For example</em>, if we consider a household of 4 individuals then a feasible chain is
+1-2-1 and can be read “one individual was infected. This indiviudal infected two household members, and one of these two household members (not the original infected individual) infected the last household member who was still susceptible.”. There are many possible epidemic chains for a household of four individuals. More examples include: 3- or “Three individuals were infected in one time unit and none after”; 1-1-2 or “One individual infected another and this second individal infected the remaining two individuals”.</p>
+<p>To compute the probability of an epidemic chain, we defer to the Reed-Frost model.
+\begin{align}
+P( 1-2-1 ) &amp;= P(I_{1} = 2 | S_{0}=4, I_{0}=1) \times P(I_{2} = 1 | S_{1}=2, I_{1}=2)\
+&amp;= \text{Bin}\left( 2 ; S=4, \theta= \left[1 - (1-p)^{1}\right] \right) \times \text{Bin}\left( 1 ; S=2, \theta= \left[1 - (1-p)^{2}\right] \right)<br />
+\end{align}</p>
+<p>If the probabiltiy of infection equals <span class="math notranslate nohighlight">\(p=0.1\)</span> then we can compute the above two binomial probabilities (For example, a free calculator is here = <a class="reference external" href="https://homepage.divms.uiowa.edu/~mbognar/applets/bin.html">https://homepage.divms.uiowa.edu/~mbognar/applets/bin.html</a>, and find that</p>
+<p>\begin{align}
+P( 1-2-1 ) = 0.0486 \times 0.3078 = 0.0149
+\end{align}</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter one - Communicable diseases terminology and concepts (infection, transmission, and control)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter three -  Compartmental models, the SIR and friends</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter two - Reed-Frost dynamics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-and-setup">Assumptions and setup <a class="anchor" id="setup"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-of-escape-and-infection">Probability of escape and infection <a class="anchor" id="escape"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions <a class="anchor" id="init"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution">Evolution<a class="anchor" id="evolution"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-reed-frost-dynamical-system">The Reed Frost Dynamical System<a class="anchor" id="reedfrost"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation<a class="anchor" id="simulation"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamics-assumed-at-start-of-outbreak">Dynamics assumed at start of outbreak <a class="anchor" id="start"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#math-aside-we-need-this">Math aside (we need this)<a class="anchor" id="aside"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trick-1">Trick 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trick-2">Trick 2</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#we-re-back">We’re Back.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basic-reproduction-number">The Basic Reproduction Number<a class="anchor" id="reponumber"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-reproduction-number-and-outbreak">Relationship between Reproduction number and outbreak. <a class="anchor" id="outbreak"></a></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-effective-reproduction-number-and-herd-immunity">The Effective Reproduction number and Herd Immunity<a class="anchor" id="herd"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-growth-rate-and-estimating-the-basic-reproduction-number-at-the-onset-of-an-outbreak">The growth rate and estimating the basic reproduction number at the onset of an outbreak  <a class="anchor" id="estim1"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ability-to-study-epidemic-chains">The ability to study epidemic chains <a class="anchor" id="chains"></a></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
