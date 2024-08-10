@@ -38,8 +38,3 @@ parse:
     # including those that are enabled by default!
     - amsmath
     - dollarmath
-    - myst_heading_anchors = 2
-
-sphinx:
-  config:
-    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
