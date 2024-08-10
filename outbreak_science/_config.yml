@@ -38,6 +38,7 @@ parse:
     # including those that are enabled by default!
     - amsmath
     - dollarmath
+    - myst_heading_anchors = 2
 
 sphinx:
   config:
