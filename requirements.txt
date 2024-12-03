@@ -4,3 +4,4 @@ numpy
 ipywidgets
 widgetsnbextension
 statsmodels
+networkx
