@@ -13,6 +13,7 @@ chapters:
 - file: chap6
 - file: chap7
 - file: WMMtest
+- file: Multispecies_models
 - file: dtKM
 - file: Fixed_points_and_linear_stability
 - file: temp_forcing
