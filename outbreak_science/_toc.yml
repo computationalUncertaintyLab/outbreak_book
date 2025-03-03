@@ -17,3 +17,4 @@ chapters:
 - file: dtKM
 - file: Fixed_points_and_linear_stability
 - file: temp_forcing
+- file: stochastic_epidemic_models
