@@ -20,3 +20,4 @@ chapters:
 - file: stochastic_epidemic_models
 - file: Metapopulation_models
 - file: LTCF
+- file: cellular_automata
