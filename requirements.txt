@@ -5,3 +5,4 @@ ipywidgets
 widgetsnbextension
 statsmodels
 networkx
+seaborn
