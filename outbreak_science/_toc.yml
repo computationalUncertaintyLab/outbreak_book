@@ -21,3 +21,4 @@ chapters:
 - file: Metapopulation_models
 - file: LTCF
 - file: cellular_automata
+- file: Bayesian_learning
