@@ -22,3 +22,4 @@ chapters:
 - file: LTCF
 - file: cellular_automata
 - file: Bayesian_learning
+- file: Computational_posterior
