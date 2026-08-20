@@ -1,0 +1,121 @@
+/* Outbreak Science — custom Jupyter Book styles */
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap");
+
+:root {
+  --pst-color-primary: #1a5276;
+  --pst-color-primary-highlight: #2471a3;
+  --pst-color-secondary: #566573;
+  --pst-font-family-base: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --pst-font-family-heading: "Source Sans 3", system-ui, -apple-system, sans-serif;
+  --pst-font-size-base: 17px;
+  --pst-font-size-h1: 2rem;
+  --pst-font-size-h2: 1.5rem;
+  --pst-font-size-h3: 1.25rem;
+}
+
+/* Comfortable reading width */
+.bd-main .bd-content .bd-article-container {
+  max-width: 900px;
+}
+
+.bd-main .bd-content {
+  padding-top: 1.5rem;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--pst-font-family-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+h1 {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--pst-color-primary);
+}
+
+h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Body text */
+.bd-article-container p,
+.bd-article-container li {
+  line-height: 1.7;
+}
+
+/* Admonitions */
+.admonition {
+  border-radius: 6px;
+  border-left-width: 4px;
+  margin: 1.5rem 0;
+}
+
+.admonition-title {
+  font-family: var(--pst-font-family-heading);
+  font-weight: 600;
+}
+
+/* Code blocks */
+div.highlight,
+pre {
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+div.cell_input,
+div.cell_output {
+  border-radius: 6px;
+  margin: 1.25rem 0;
+}
+
+/* Inline code */
+code {
+  font-size: 0.88em;
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+}
+
+/* Figures and tables */
+figure {
+  margin: 2rem auto;
+}
+
+figure img {
+  border-radius: 4px;
+}
+
+table.table {
+  margin: 1.5rem 0;
+  font-size: 0.95em;
+}
+
+/* Table of contents on page */
+nav.bd-toc .onthispage {
+  font-family: var(--pst-font-family-heading);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Sidebar chapter list */
+.bd-sidebar-primary .bd-links {
+  font-family: var(--pst-font-family-heading);
+  font-size: 0.92rem;
+}
+
+/* Navbar */
+.navbar-brand {
+  font-family: var(--pst-font-family-heading);
+  font-weight: 600;
+}
