@@ -1,6 +1,7 @@
 jupyter-book<2
 matplotlib
 numpy
+scipy
 ipywidgets
 widgetsnbextension
 statsmodels

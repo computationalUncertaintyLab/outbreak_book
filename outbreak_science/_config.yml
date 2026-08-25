@@ -22,9 +22,15 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/computationalUncertaintyLab/outbreak_book  # Online location of your book
-  path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: master  # Which branch of the repository should be used when creating links (optional)
+  url: https://github.com/computationalUncertaintyLab/outbreak_book
+  path_to_book: outbreak_science
+  branch: main
+
+# Run notebook code in the browser (ipywidgets sliders, live plots, etc.)
+launch_buttons:
+  binderhub_url: "https://mybinder.org"
+  thebe: true
+  notebook_interface: classic
 
 # HTML output and branding
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
@@ -35,6 +41,8 @@ html:
   use_edit_page_button: true
   use_issues_button: true
   use_repository_button: true
+  extra_footer: |
+    <p>Computational Uncertainty Lab · Outbreak Science</p>
 
 # Ensure widgets render in static HTML (e.g., ipywidgets)
 sphinx:
@@ -43,6 +51,10 @@ sphinx:
       - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
     html_css_files:
       - custom.css
+    thebe_config:
+      repository_url: https://github.com/computationalUncertaintyLab/outbreak_book
+      repository_branch: main
+      path_to_docs: outbreak_science
     html_theme_options:
       logo:
         text: Outbreak Science
@@ -50,6 +62,13 @@ sphinx:
         - page-toc
         - edit-this-page
       navbar_align: content
+      show_navbar_depth: 1
+      collapse_navigation: false
+      show_toc_level: 2
+      use_download_button: true
+      use_fullscreen_button: true
+      icon_links: []
+
 
 # Latex styles
 parse:
