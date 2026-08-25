@@ -252,25 +252,25 @@ nav.bd-toc a,
   max-height: 2.15rem;
 }
 
-/* Sidebar brand block — bold ink strip */
+/* Sidebar brand block */
 .bd-sidebar-primary .navbar-brand {
   display: flex;
   align-items: center;
   padding: 1rem 0.85rem;
   margin: 0.35rem 0.5rem 1rem;
-  background: var(--os-ink);
+  background: var(--os-surface-raised);
+  border: 1px solid var(--os-border);
   border-radius: 2px;
-  color: #fff !important;
+  color: var(--os-ink) !important;
 }
 
 .bd-sidebar-primary .navbar-brand .logo__title,
 .bd-sidebar-primary .navbar-brand p,
 .bd-sidebar-primary .navbar-brand span {
-  color: #fff !important;
+  color: var(--os-ink) !important;
 }
 
 .bd-sidebar-primary .navbar-brand img {
-  filter: brightness(0) invert(1);
   max-height: 1.75rem;
 }
 
@@ -279,8 +279,10 @@ html[data-theme="dark"] .bd-sidebar-primary .navbar-brand {
   border: 1px solid var(--os-teal);
 }
 
-html[data-theme="dark"] .bd-sidebar-primary .navbar-brand img {
-  filter: none;
+html[data-theme="dark"] .bd-sidebar-primary .navbar-brand .logo__title,
+html[data-theme="dark"] .bd-sidebar-primary .navbar-brand p,
+html[data-theme="dark"] .bd-sidebar-primary .navbar-brand span {
+  color: var(--os-ink) !important;
 }
 
 /* Search / icon buttons in header */
