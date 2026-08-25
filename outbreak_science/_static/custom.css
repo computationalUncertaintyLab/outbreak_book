@@ -504,11 +504,23 @@ table.table,
   background: var(--os-teal-muted);
 }
 
-/* Math */
+/* Display math only — do not target span.math (inline) */
 div.math,
-.math {
-  margin: 1.5rem 0;
+div.amsmath.math {
+  margin: 0.85rem 0;
   overflow-x: auto;
+}
+
+span.math {
+  margin: 0;
+}
+
+mjx-container[display="true"] {
+  margin: 0.85rem 0 !important;
+}
+
+mjx-container:not([display="true"]) {
+  margin: 0 !important;
 }
 
 /* ------------------------------------------------------------------ */
