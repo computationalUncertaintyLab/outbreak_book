@@ -58,6 +58,16 @@ sphinx:
     html_theme_options:
       logo:
         text: Outbreak Science
+      repository_url: https://github.com/computationalUncertaintyLab/outbreak_book
+      repository_branch: main
+      path_to_docs: outbreak_science
+      use_repository_button: true
+      use_edit_page_button: true
+      use_issues_button: true
+      launch_buttons:
+        binderhub_url: "https://mybinder.org"
+        thebe: true
+        notebook_interface: classic
       primary_sidebar_end:
         - page-toc
         - edit-this-page
